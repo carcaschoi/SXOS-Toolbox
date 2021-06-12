@@ -13,7 +13,7 @@
 #include "json.hpp"
 
 
-#define CONTENTS_PATH "/atmosphere/contents/"
+#define CONTENTS_PATH "/sxos/titles/"
 
 
 //Rows of buttons per column
@@ -34,7 +34,7 @@ GuiSysmodule::GuiSysmodule() : Gui() {
 
   anyModulesPresent = false;
 
-  std::ifstream configFile("sdmc:/switch/HekateToolbox/config.json");
+  std::ifstream configFile("sdmc:/switch/SXOSToolbox/config.json");
   json configJson;
 
   if (!configFile.fail()) {

@@ -34,11 +34,11 @@ VERSION_MAJOR := 4
 VERSION_MINOR := 0
 VERSION_MICRO := 1
 
-APP_TITLE	:=	Hekate Toolbox
-APP_AUTHOR	:=	WerWolv, cathery
+APP_TITLE	:=	SXOS Toolbox
+APP_AUTHOR	:=	WerWolv, cathery, carcaschoi
 APP_VERSION	:=	${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_MICRO}
 
-TARGET		:=	HekateToolbox
+TARGET		:=	SXOSToolbox
 OUTDIR		:=	out
 BUILD		:=	build
 SOURCES		:=	source source/gui source/utils

@@ -41,42 +41,6 @@ GuiMain::GuiMain() : Gui() {
   }, { -1, 2, -1, 1 }, false, []() -> bool {return true;});
 
   //1
-  new Button(370, 240, 700, 80, [&](Gui *gui, u16 x, u16 y, bool *isActivated){
-     gui->drawTextAligned(font20, x + 37, y + 50, currTheme.textColor, "Hekate autoboot profile", ALIGNED_LEFT);
-
-     std::string autoBootName = m_currAutoBootConfig.name;
-
-     if(autoBootName.length() >= 25) {
-       autoBootName = autoBootName.substr(0, 24);
-       autoBootName += "...";
-     }
-
-     gui->drawTextAligned(font20, x + 660, y + 50, currTheme.selectedColor, autoBootName.c_str(), ALIGNED_RIGHT);
-   }, [&](u32 kdown, bool *isActivated){
-     if (kdown & KEY_A) {
-       autobootNames.clear();
-
-       for(auto const& autoBootEntry : m_autoBootConfigs)
-         autobootNames.push_back(autoBootEntry.name);
-
-       (new ListSelector("Hekate autoboot profile", "\uE0E1 Back     \uE0E0 OK", autobootNames, currAutoBootEntryIndex))->setInputAction([&](u32 k, u16 selectedItem){
-         if(k & KEY_A) {
-           simpleIniParser::Ini *hekateIni = simpleIniParser::Ini::parseFile(HEKATE_INI);
-           currAutoBootEntryIndex = selectedItem;
-           m_currAutoBootConfig = m_autoBootConfigs[selectedItem];
-
-           auto ini_autoboot = hekateIni->findSection("config")->findFirstOption("autoboot");
-           auto ini_autoboot_list = hekateIni->findSection("config")->findFirstOption("autoboot_list");
-
-           ini_autoboot->value = std::to_string(m_currAutoBootConfig.id);
-           ini_autoboot_list->value = std::to_string(m_currAutoBootConfig.autoBootList);
-
-           hekateIni->writeToFile(HEKATE_INI);
-           Gui::g_currListSelector->hide();
-         }
-       })->show();
-     }
-   }, { -1, 2, 0, -1 }, false, []() -> bool {return true;});
 
   //2
   new Button(370, 340, 340, 80, [&](Gui *gui, u16 x, u16 y, bool *isActivated){
@@ -90,7 +54,7 @@ GuiMain::GuiMain() : Gui() {
   //3
   new Button(735, 340, 335, 80, [&](Gui *gui, u16 x, u16 y, bool *isActivated){
     gui->drawRectangled(x, y, 335, 80, currTheme.submenuButtonColor);
-    gui->drawTextAligned(font20, x + 55, y + 50, currTheme.textColor, "Reboot to Hekate", ALIGNED_LEFT);
+    gui->drawTextAligned(font20, x + 55, y + 50, currTheme.textColor, "Reboot to SXOS", ALIGNED_LEFT);
   }, [&](u32 kdown, bool *isActivated){
     if (kdown & KEY_A) {
       Gui::g_nextGui = GUI_HEKATE;
